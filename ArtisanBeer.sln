@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtisanBeer", "ArtisanBeer.csproj", "{E4214303-1B72-449C-84A5-585613FD4E95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4214303-1B72-449C-84A5-585613FD4E95}.Debug|x64.ActiveCfg = Debug|x64
+		{E4214303-1B72-449C-84A5-585613FD4E95}.Debug|x64.Build.0 = Debug|x64
+		{E4214303-1B72-449C-84A5-585613FD4E95}.Release|x64.ActiveCfg = Release|x64
+		{E4214303-1B72-449C-84A5-585613FD4E95}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0EA0CB5C-4F41-4826-A6F6-E1B14E88CCAA}
+	EndGlobalSection
+EndGlobal
