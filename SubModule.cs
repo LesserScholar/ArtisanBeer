@@ -21,6 +21,7 @@ namespace ArtisanBeer
 
         protected override void InitializeGameStarter(Game game, IGameStarter starterObject)
         {
+            base.InitializeGameStarter(game, starterObject);
             if (starterObject is CampaignGameStarter starter)
             {
                 starter.AddBehavior(new ArtisanBeerBehavior());
