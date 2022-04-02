@@ -23,9 +23,11 @@ namespace ArtisanBeer
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
         ItemObject _artisanBeer;
+        CharacterObject _artisanBrewer;
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             _artisanBeer = MBObjectManager.Instance.GetObject<ItemObject>("artisan_beer");
+            _artisanBrewer = MBObjectManager.Instance.GetObject<CharacterObject>("artisan_brewer");
             AddDialogs(starter);
         }
 
@@ -45,16 +47,19 @@ namespace ArtisanBeer
             }
             {
                 starter.AddDialogLine("artisan_brewer_talk", "start", "artisan_brewer", "Howdy. Would you like to purchace some Artisan Beer? One mug is 200 denars.",
-                    () => CharacterObject.OneToOneConversationCharacter == Settlement.CurrentSettlement.Culture.CaravanMaster, null);
-                starter.AddPlayerLine("artisan_brewer_buy", "artisan_brewer", "artisan_brewer_purchaced", "Sure, I'll take one.", null, () => {
+                    () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer, null);
+                starter.AddPlayerLine("artisan_brewer_buy", "artisan_brewer", "artisan_brewer_purchaced", "Sure, I'll take one.", null, () =>
+                {
                     Hero.MainHero.ChangeHeroGold(-200);
                     MobileParty.MainParty.ItemRoster.AddToCounts(_artisanBeer, 1);
-                }, 100, (out TextObject explanation) => {
+                }, 100, (out TextObject explanation) =>
+                {
                     if (Hero.MainHero.Gold < 200)
                     {
                         explanation = new TextObject("Not enough money.");
                         return false;
-                    } else
+                    }
+                    else
                     {
                         explanation = TextObject.Empty;
                         return true;
@@ -81,12 +86,21 @@ namespace ArtisanBeer
                     unusedUsablePointCount.TryGetValue(workshop.Tag, out num);
                     if (num > 0f)
                     {
-                        CharacterObject caravanMaster = Settlement.CurrentSettlement.Culture.CaravanMaster;
-
-                        LocationCharacter locationCharacter = new LocationCharacter(new AgentData(
-                            new SimpleAgentOrigin(caravanMaster)).Monster(Campaign.Current.HumanMonsterSettlement),
+                        string actionSetCode = "as_human_villager_drinker_with_mug";
+                        string value = "artisan_beer_drinking_animation";
+                        var agentData = new AgentData(
+                            new SimpleAgentOrigin(_artisanBrewer)).Monster(Campaign.Current.HumanMonsterSettlement);
+                        LocationCharacter locationCharacter = new LocationCharacter(agentData,
                             new LocationCharacter.AddBehaviorsDelegate(SandBoxManager.Instance.AgentBehaviorManager.AddWandererBehaviors),
-                            workshop.Tag, true, LocationCharacter.CharacterRelations.Neutral, null, true, false, null, false, false, true);
+                            workshop.Tag, true, LocationCharacter.CharacterRelations.Friendly, actionSetCode, true, false, null, false, false, true)
+                        {
+                            PrefabNamesForBones = {
+                                {
+                                    agentData.AgentMonster.MainHandItemBoneIndex,
+                                    value
+                                }
+                            }
+                        };
                         locationWithId.AddCharacter(locationCharacter);
                     }
                 }
@@ -107,7 +121,7 @@ namespace ArtisanBeer
 
         private void OnWorkshopChangedEvent(Workshop workshop, Hero oldOwningHero, WorkshopType type)
         {
-            
+
         }
 
         public override void SyncData(IDataStore dataStore)

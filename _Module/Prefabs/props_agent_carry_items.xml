@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<prefabs>
+	<game_entity name="artisan_beer_drinking_animation" old_prefab_name="">
+		<transform position="0.0, 0.0, 0.0" rotation_euler="0.0, 0.0, -90.0" scale="0.600, 0.600, 0.600"/>
+		<physics mass="1.000"/>
+      <components>
+			<meta_mesh_component name="artisan_beer_mesh"/>
+      </components>
+    </game_entity>
+</prefabs>
+
