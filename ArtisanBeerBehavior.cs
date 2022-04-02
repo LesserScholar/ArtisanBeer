@@ -43,12 +43,12 @@ namespace ArtisanBeer
                     }
                     return false;
                 }, null);
-                starter.AddDialogLine("tavernkeeper_talk_artisan_beer_b", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "We don't have a brewery in town you'll have to look somewhere else.", null, null);
+                starter.AddDialogLine("tavernkeeper_talk_artisan_beer_b", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "We don't have a brewery in town. You'll have to look somewhere else.", null, null);
             }
             {
-                starter.AddDialogLine("artisan_brewer_talk", "start", "artisan_brewer", "Howdy. Would you like to purchace some Artisan Beer? One mug is 200 denars.",
+                starter.AddDialogLine("artisan_brewer_talk", "start", "artisan_brewer", "Howdy. Would you like to purchase some Artisan Beer? One mug is 200 denars.",
                     () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer, null);
-                starter.AddPlayerLine("artisan_brewer_buy", "artisan_brewer", "artisan_brewer_purchaced", "Sure, I'll take one.", null, () =>
+                starter.AddPlayerLine("artisan_brewer_buy", "artisan_brewer", "artisan_brewer_purchased", "Sure, I'll take one.", null, () =>
                 {
                     Hero.MainHero.ChangeHeroGold(-200);
                     MobileParty.MainParty.ItemRoster.AddToCounts(_artisanBeer, 1);
@@ -65,7 +65,7 @@ namespace ArtisanBeer
                         return true;
                     }
                 });
-                starter.AddDialogLine("artisan_brewer_thanks_for_business", "artisan_brewer_purchaced", "end", "Thank you come again!", null, null);
+                starter.AddDialogLine("artisan_brewer_thanks_for_business", "artisan_brewer_purchased", "end", "Thank you come again!", null, null);
 
                 starter.AddPlayerLine("artisan_brewer_buy_refuse", "artisan_brewer", "artisan_brewer_declined", "Nah I'm good, thanks.", null, null);
                 starter.AddDialogLine("artisan_brewer_your_loss", "artisan_brewer_declined", "end", "Your loss.", null, null);
