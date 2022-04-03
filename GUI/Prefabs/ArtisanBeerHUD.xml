@@ -1,0 +1,13 @@
+<Prefab>
+  <Constants>
+  </Constants>
+
+  <Window>
+    <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight" HorizontalAlignment="Left" VerticalAlignment="Top">
+      <Children>
+        <ImageWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="80" SuggestedHeight="80" Sprite="artisan_beer_sprite"/>
+        <TextWidget IsVisible="@IsVisible" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" IntText="@BeerAmount" />
+      </Children>
+    </ListPanel>
+  </Window>
+</Prefab>
