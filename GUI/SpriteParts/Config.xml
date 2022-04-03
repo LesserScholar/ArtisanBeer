@@ -1,0 +1,5 @@
+<Config>
+    <SpriteCategory Name="ui_artisan_beer">
+        <AlwaysLoad/>
+    </SpriteCategory>
+</Config>
