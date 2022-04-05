@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="module_sound">
+  <module_sounds>
+  <!--
+  sound_categories are:
+	mission_ambient_bed
+	mission_ambient_3d_big
+	mission_ambient_3d_medium
+	mission_ambient_3d_small
+	mission_material_impact
+	mission_combat_trivial
+	mission_combat
+	mission_foley
+	mission_voice_shout
+	mission_voice
+	mission_voice_trivial
+	mission_siege_loud
+	mission_footstep
+	mission_footstep_run
+	mission_horse_gallop
+	mission_horse_walk
+	ui
+	alert
+	campaign_node
+	campaign_bed
+
+  -->
+    <module_sound name="artisanbeer/drink" is_2d="true" sound_category="ui" path="drinking_sound.wav" />
+  </module_sounds>
+
+</base>

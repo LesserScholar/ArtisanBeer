@@ -1,6 +1,7 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.Core;
+using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.Library;
@@ -53,12 +54,15 @@ namespace ArtisanBeer
     public class ArtisanBeerMissionVM : ViewModel {
 
         Mission _mission;
+        int _soundIndex;
+
         public ArtisanBeerMissionVM(Mission mission)
         {
             _mission = mission;
             var itemRoster = MobileParty.MainParty.ItemRoster;
             var artisanBeerObject = MBObjectManager.Instance.GetObject<ItemObject>("artisan_beer");
             BeerAmount = itemRoster.GetItemNumber(artisanBeerObject);
+            _soundIndex = SoundEvent.GetEventIdFromString("artisanbeer/drink");
 
             OnMissionModeChanged(mission);
         }
@@ -119,6 +123,8 @@ namespace ArtisanBeer
             InformationManager.DisplayMessage(new InformationMessage(String.Format("We healed {0} hp", _mission.MainAgent.Health - oldHealth)));
 
             BeerAmount -= 1;
+
+            SoundEvent.PlaySound2D(_soundIndex);
         }
     }
 }

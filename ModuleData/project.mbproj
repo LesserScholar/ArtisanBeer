@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="solution">
+  <file id="soln_module_sound" name="ModuleData/module_sounds.xml" type="module_sound" />
+</base>
