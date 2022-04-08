@@ -66,6 +66,14 @@ namespace ArtisanBeer
                     }, (List<InquiryElement> list) => { });
                 InformationManager.ShowMultiSelectionInquiry(data);
             });
+            starter.AddGameMenuOption("town_workshop", "town_workshop_management", "Manage Workshop", (MenuCallbackArgs args) =>
+            {
+                args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
+                return true;
+            }, (MenuCallbackArgs args) =>
+            {
+                GameStateManager.Current.PushState(GameStateManager.Current.CreateState<ArtisanWorkshopManagementState>(_selectedWorkshop, ArtisanWorkshop(_selectedWorkshop)));
+            });
             starter.AddGameMenuOption("town_workshop", "town_workshop_id", "{=3sRdGQou}Leave", (MenuCallbackArgs args) =>
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Leave;

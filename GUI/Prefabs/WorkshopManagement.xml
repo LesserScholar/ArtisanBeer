@@ -1,0 +1,34 @@
+<Prefab>
+    <Constants>
+    </Constants>
+
+    <Window>
+        <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+            <Children>
+                <Standard.Window Parameter.Title="Brewery Management">
+                    <Children>
+                        <ListPanel SuggestedWidth="550" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop"> 
+                            <Children>
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Text="Production Ratio" />
+                                <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+                                    <Children>
+                                        <TextWidget SuggestedWidth="20" HeightSizePolicy="CoverChildren" MarginLeft="50" IntText="@ArtisanBeerProduction" />
+                                        <Standard.Slider WidthSizePolicy="StretchToParent" MarginLeft="40" MarginRight="15" Parameter.ValueInt="@ArtisanBeerProduction" Parameter.MinValue="0" Parameter.MaxValue="6" />
+                                        <TextWidget SuggestedWidth="100" HeightSizePolicy="CoverChildren" Text="@RegularBeerProduction" MarginRight="20" />
+                                    </Children>
+                                </ListPanel>
+                                <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
+                                    <Children>
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Text="Artisan Beer" />
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Text="Regular Beer" />
+                                    </Children>
+                                </Widget>
+                            </Children>
+                        </ListPanel>
+                    </Children>
+                </Standard.Window>
+                <Standard.DialogCloseButtons Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="Cancel" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonText="Done" />
+            </Children>
+        </Widget>
+    </Window>
+</Prefab>
