@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
@@ -10,7 +11,8 @@ namespace ArtisanBeer
         protected override void OnSubModuleLoad()
         {
             base.OnSubModuleLoad();
-
+            Harmony harmony = new Harmony("artisan_beer");
+            harmony.PatchAll();
         }
 
         public override void OnMissionBehaviorInitialize(Mission mission)

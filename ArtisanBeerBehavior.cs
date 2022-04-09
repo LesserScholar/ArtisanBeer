@@ -28,14 +28,17 @@ namespace ArtisanBeer
             CampaignEvents.LocationCharactersAreReadyToSpawnEvent.AddNonSerializedListener(this, LocationCharactersAreReadyToSpawn);
             CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
+
         ItemObject _artisanBeer;
         CharacterObject _artisanBrewer;
+        static public ArtisanBeerBehavior instance;
         private void OnSessionLaunched(CampaignGameStarter starter)
         {
             _artisanBeer = MBObjectManager.Instance.GetObject<ItemObject>("artisan_beer");
             _artisanBrewer = MBObjectManager.Instance.GetObject<CharacterObject>("artisan_brewer");
             AddDialogs(starter);
             AddGameMenus(starter);
+            instance = this;
         }
         Workshop _selectedWorkshop;
         private void AddGameMenus(CampaignGameStarter starter)
@@ -229,6 +232,13 @@ namespace ArtisanBeer
         private void OnWorkshopChangedEvent(Workshop workshop, Hero oldOwningHero, WorkshopType type)
         {
 
+        }
+
+        static public float WorkshopProductionEfficiency(Workshop workshop)
+        {
+            if (workshop.WorkshopType.StringId != "brewery") return 1.0f;
+            var artisanWorkshop = instance.ArtisanWorkshop(workshop);
+            return 1.2f - artisanWorkshop.dailyProductionAmount * 0.2f;
         }
 
         public ArtisanWorkshopState ArtisanWorkshop(Workshop workshop)
