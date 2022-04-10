@@ -47,21 +47,23 @@ namespace ArtisanBeer
             {
                 AddWorkshopButton(starter, i);
             }
-            starter.AddGameMenu("town_workshop", "Brewery", (MenuCallbackArgs args) => { },
+            starter.AddGameMenu("town_workshop", "{=GsaLzLfl}Brewery", (MenuCallbackArgs args) => { },
                 GameOverlays.MenuOverlayType.SettlementWithBoth);
-            starter.AddGameMenuOption("town_workshop", "town_workshop_inventory", "Inventory", (MenuCallbackArgs args) =>
+            starter.AddGameMenuOption("town_workshop", "town_workshop_inventory", "{=rbz1Bwbv}Inventory", (MenuCallbackArgs args) =>
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Trade;
                 return true;
-            }, (MenuCallbackArgs args) => {
+            }, (MenuCallbackArgs args) =>
+            {
                 List<InquiryElement> list = new List<InquiryElement>();
                 var artisanWorkshop = ArtisanWorkshop(_selectedWorkshop);
                 for (int i = 0; i < artisanWorkshop.inventoryStock; i++)
                 {
                     list.Add(new InquiryElement(_artisanBeer, _artisanBeer.Name.ToString(), new ImageIdentifier(_artisanBeer)));
                 }
-                MultiSelectionInquiryData data = new MultiSelectionInquiryData("Inventory", "Take items from the workshop inventory.",
-                    list, true, 1000, "Take", "{=3sRdGQou}Leave", (List<InquiryElement> list) =>
+                MultiSelectionInquiryData data = new MultiSelectionInquiryData(new TextObject("{=rbz1Bwbv}Inventory").ToString(),
+                    new TextObject("{=YcbavfPt0W3jr}Take items from the workshop inventory.").ToString(),
+                    list, true, 1000, new TextObject("{=yFl9N7wz}Take").ToString(), "", (List<InquiryElement> list) =>
                     {
                         var artisanWorkshop = ArtisanWorkshop(_selectedWorkshop);
                         artisanWorkshop.AddToStock(-list.Count);
@@ -69,7 +71,7 @@ namespace ArtisanBeer
                     }, (List<InquiryElement> list) => { });
                 InformationManager.ShowMultiSelectionInquiry(data);
             });
-            starter.AddGameMenuOption("town_workshop", "town_workshop_management", "Manage Workshop", (MenuCallbackArgs args) =>
+            starter.AddGameMenuOption("town_workshop", "town_workshop_management", "{=ev08nvH3KQP8P}Manage Workshop", (MenuCallbackArgs args) =>
             {
                 args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
                 return true;
@@ -86,7 +88,7 @@ namespace ArtisanBeer
 
         private void AddWorkshopButton(CampaignGameStarter starter, int i)
         {
-            starter.AddGameMenuOption("town", "town_workshop" + i, "Go to Brewery",
+            starter.AddGameMenuOption("town", "town_workshop" + i, "{=d8TQkUf6shisI}Go to Brewery",
                         (MenuCallbackArgs args) =>
                         {
                             args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
@@ -137,8 +139,8 @@ namespace ArtisanBeer
         private void AddDialogs(CampaignGameStarter starter)
         {
             {
-                starter.AddPlayerLine("tavernkeeper_talk_ask_artisan_beer", "tavernkeeper_talk", "tavernkeeper_artisan_beer", "Do you sell artisan beer?", null, null);
-                starter.AddDialogLine("tavernkeeper_talk_artisan_beer_a", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "Bah. Greedy bastard at the brewery doesn't want to sell his stuff to me. Something about getting better rates selling directly to customers.", () =>
+                starter.AddPlayerLine("tavernkeeper_talk_ask_artisan_beer", "tavernkeeper_talk", "tavernkeeper_artisan_beer", "{=QGOIY2sG9r43k}Do you sell artisan beer?", null, null);
+                starter.AddDialogLine("tavernkeeper_talk_artisan_beer_a", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "{=ySPUlbgCuHxk7}Bah. Greedy bastard at the brewery doesn't want to sell his stuff to me. Something about getting better rates selling directly to customers.", () =>
                 {
                     foreach (var workshop in Settlement.CurrentSettlement.Town.Workshops)
                     {
@@ -146,14 +148,19 @@ namespace ArtisanBeer
                     }
                     return false;
                 }, null);
-                starter.AddDialogLine("tavernkeeper_talk_artisan_beer_b", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "We don't have a brewery in town. You'll have to look somewhere else.", null, null);
+                starter.AddDialogLine("tavernkeeper_talk_artisan_beer_b", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "{=P9f9VwfJSNypO}We don't have a brewery in town. You'll have to look somewhere else.", null, null);
             }
             {
-                starter.AddDialogLine("artisan_brewer_talk_outofstock", "start", "end", "Howdy. Are you here to buy artisan beer? Unfortunately we are out of stock. Come back later.",
+                starter.AddDialogLine("artisan_brewer_talk_outofstock", "start", "end", "{=vaYcSAMZjDnYX}Howdy. Are you here to buy artisan beer? Unfortunately we are out of stock. Come back later.",
                     () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer && ConversationArtisanWorkshopStock() <= 0, null);
-                starter.AddDialogLine("artisan_brewer_talk_instock", "start", "artisan_brewer", "Howdy. Would you like to purchase some Artisan Beer? One mug is 200 denars.",
-                    () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer, null);
-                starter.AddPlayerLine("artisan_brewer_buy", "artisan_brewer", "artisan_brewer_purchased", "Sure, I'll take one.", null, () =>
+
+                starter.AddDialogLine("artisan_brewer_talk_instock", "start", "artisan_brewer", "{=ZdHx6WHCSmSjR}Howdy. Would you like to purchase some Artisan Beer? One mug is {PRICE}{GOLD_ICON}.",
+                    () =>
+                    {
+                        MBTextManager.SetTextVariable("PRICE", 200);
+                        return CharacterObject.OneToOneConversationCharacter == _artisanBrewer;
+                    }, null);
+                starter.AddPlayerLine("artisan_brewer_buy", "artisan_brewer", "artisan_brewer_purchased", "{=iJg7vJ8VjI3gE}Sure, I'll take one.", null, () =>
                 {
                     Hero.MainHero.ChangeHeroGold(-200);
                     MobileParty.MainParty.ItemRoster.AddToCounts(_artisanBeer, 1);
@@ -163,7 +170,7 @@ namespace ArtisanBeer
                 {
                     if (Hero.MainHero.Gold < 200)
                     {
-                        explanation = new TextObject("Not enough money.");
+                        explanation = new TextObject("{=hylxyNtU}You don't have enough.");
                         return false;
                     }
                     else
@@ -172,10 +179,10 @@ namespace ArtisanBeer
                         return true;
                     }
                 });
-                starter.AddDialogLine("artisan_brewer_thanks_for_business", "artisan_brewer_purchased", "end", "Thank you come again!", null, null);
+                starter.AddDialogLine("artisan_brewer_thanks_for_business", "artisan_brewer_purchased", "end", "{=niTH9sA3ar7r0}Thank you come again!", null, null);
 
-                starter.AddPlayerLine("artisan_brewer_buy_refuse", "artisan_brewer", "artisan_brewer_declined", "Nah I'm good, thanks.", null, null);
-                starter.AddDialogLine("artisan_brewer_your_loss", "artisan_brewer_declined", "end", "Your loss.", null, null);
+                starter.AddPlayerLine("artisan_brewer_buy_refuse", "artisan_brewer", "artisan_brewer_declined", "{=yCAp6VyaqYXlb}Nah I'm good, thanks.", null, null);
+                starter.AddDialogLine("artisan_brewer_your_loss", "artisan_brewer_declined", "end", "{=0aheY0j8IUl9O}Your loss.", null, null);
             }
         }
 

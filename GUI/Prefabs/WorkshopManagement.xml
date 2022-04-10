@@ -5,11 +5,11 @@
     <Window>
         <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
             <Children>
-                <Standard.Window Parameter.Title="Brewery Management">
+                <Standard.Window Parameter.Title="@TitleText">
                     <Children>
                         <ListPanel SuggestedWidth="550" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop"> 
                             <Children>
-                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Text="Production Ratio" />
+                                <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" Text="@ProductionRatioLabel" />
                                 <ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
                                     <Children>
                                         <TextWidget SuggestedWidth="20" HeightSizePolicy="CoverChildren" MarginLeft="50" IntText="@ArtisanBeerProduction" />
@@ -19,15 +19,15 @@
                                 </ListPanel>
                                 <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
                                     <Children>
-                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Text="Artisan Beer" />
-                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Text="Regular Beer" />
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Left" Text="@ArtisanBeerLabel" />
+                                        <TextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" Text="@RegularBeerLabel" />
                                     </Children>
                                 </Widget>
                             </Children>
                         </ListPanel>
                     </Children>
                 </Standard.Window>
-                <Standard.DialogCloseButtons Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="Cancel" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonText="Done" />
+                <Standard.DialogCloseButtons Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="@CancelLabel" Parameter.DoneButtonAction="ExecuteDone" Parameter.DoneButtonText="@DoneLabel" />
             </Children>
         </Widget>
     </Window>

@@ -5,6 +5,7 @@ using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade.View.Screen;
 using TaleWorlds.ScreenSystem;
 
@@ -126,6 +127,19 @@ namespace ArtisanBeer
                 }
             }
         }
+        [DataSourceProperty]
+        public string CancelLabel => GameTexts.FindText("str_cancel", null).ToString();
+        [DataSourceProperty]
+        public string DoneLabel => GameTexts.FindText("str_done", null).ToString();
+
+        [DataSourceProperty]
+        public string ArtisanBeerLabel => new TextObject("{=wYej8AeYdGwLx}Artisan Beer").ToString();
+        [DataSourceProperty]
+        public string RegularBeerLabel => new TextObject("{=elyqcMdr6iAEp}Regular Beer").ToString();
+        [DataSourceProperty]
+        public string TitleText => new TextObject("{=Ted1fuXNB0sps}Brewery Management").ToString();
+        [DataSourceProperty]
+        public string ProductionRatioLabel => new TextObject("{=sYp2rcJbLmxjU}Production Ratio").ToString();
 
         public void ExecuteCancel()
         {

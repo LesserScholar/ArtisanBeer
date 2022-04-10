@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
 <Item id="artisan_beer"
-        name="Artisan Beer"
+        name="{=06EZT6HxVvxk3}Artisan Beer"
         mesh="artisan_beer_mesh"
         item_category="artisan_beer"
         IsFood="false"

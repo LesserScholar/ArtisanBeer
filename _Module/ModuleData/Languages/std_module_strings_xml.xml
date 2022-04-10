@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+	<tags>
+		<tag language="English" />
+	</tags>
+	<strings>
+		<string id="06EZT6HxVvxk3" text="Artisan Beer" />
+		<string id="wYej8AeYdGwLx" text="Artisan Brewer" />
+		<string id="YcbavfPt0W3jr" text="Take items from the workshop inventory." />
+		<string id="ev08nvH3KQP8P" text="Manage Workshop" />
+		<string id="d8TQkUf6shisI" text="Go to Brewery" />
+		<string id="elyqcMdr6iAEp" text="Regular Beer" />
+		<string id="Ted1fuXNB0sps" text="Brewery Management" />
+		<string id="sYp2rcJbLmxjU" text="Production Ratio" />
+		<string id="QGOIY2sG9r43k" text="Do you sell artisan beer?" />
+		<string id="ySPUlbgCuHxk7" text="Bah. Greedy bastard at the brewery doesn't want to sell his stuff to me. Something about getting better rates selling directly to customers." />
+		<string id="P9f9VwfJSNypO" text="We don't have a brewery in town. You'll have to look somewhere else." />
+		<string id="vaYcSAMZjDnYX" text="Howdy. Are you here to buy artisan beer? Unfortunately we are out of stock. Come back later." />
+		<string id="ZdHx6WHCSmSjR" text="Howdy. Would you like to purchase some Artisan Beer? One mug is {PRICE}{GOLD_ICON}." />
+		<string id="iJg7vJ8VjI3gE" text="Sure, I'll take one." />
+		<string id="niTH9sA3ar7r0" text="Thank you come again!" />
+		<string id="yCAp6VyaqYXlb" text="Nah I'm good, thanks." />
+		<string id="0aheY0j8IUl9O" text="Your loss." />
+	</strings>
+</base>

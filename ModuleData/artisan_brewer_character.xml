@@ -3,7 +3,7 @@
   <NPCCharacter id="artisan_brewer"
                 default_group="Infantry"
                 level="26"
-                name="Artisan Brewer"
+                name="{=wYej8AeYdGwLx}Artisan Brewer"
                 occupation="CaravanGuard"
                 culture="Culture.empire">
     <face>
