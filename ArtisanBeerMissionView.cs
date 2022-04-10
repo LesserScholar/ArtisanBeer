@@ -5,6 +5,7 @@ using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
 using TaleWorlds.Library;
+using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.Missions;
 using TaleWorlds.ObjectSystem;
@@ -69,7 +70,7 @@ namespace ArtisanBeer
 
         public void OnMissionModeChanged(Mission mission)
         {
-            IsVisible = mission.Mode is MissionMode.Battle or MissionMode.Stealth;
+            IsVisible = (mission.Mode is MissionMode.Battle or MissionMode.Stealth) && _beerAmount > 0;
         }
 
         int _beerAmount;
@@ -109,22 +110,22 @@ namespace ArtisanBeer
         public void DrinkBeer()
         {
             if (!IsVisible) return;
-            // Check you actually have artisan beer in inventory
+            if (_beerAmount <= 0) return;
+
             var itemRoster = MobileParty.MainParty.ItemRoster;
             var artisanBeerObject = MBObjectManager.Instance.GetObject<ItemObject>("artisan_beer");
-            if (itemRoster.GetItemNumber(artisanBeerObject) <= 0) return;
-            // Remove one beer
             itemRoster.AddToCounts(artisanBeerObject, -1);
-            // Increase main character hp
-            var ma = _mission.MainAgent;
-            var oldHealth = ma.Health;
-            ma.Health += 20;
-            if (ma.Health > ma.HealthLimit) ma.Health = ma.HealthLimit;
-            InformationManager.DisplayMessage(new InformationMessage(String.Format("We healed {0} hp", _mission.MainAgent.Health - oldHealth)));
-
             BeerAmount -= 1;
 
-            SoundEvent.PlaySound2D(_soundIndex);
+            var ma = _mission.MainAgent;
+            var oldHealth = ma.Health;
+            ma.Health += 15;
+            if (ma.Health > ma.HealthLimit) ma.Health = ma.HealthLimit;
+            var msg = new TextObject("{=yCLS6x8c04f1C}We healed {HEAL_AMOUNT} HP").SetTextVariable("HEAL_AMOUNT", _mission.MainAgent.Health - oldHealth);
+            InformationManager.DisplayMessage(new InformationMessage(msg.ToString()));
+
+            _mission.MakeSound(_soundIndex, Vec3.Zero, false, true, -1, -1);
+
         }
     }
 }

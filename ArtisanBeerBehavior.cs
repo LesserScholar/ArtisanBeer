@@ -129,6 +129,12 @@ namespace ArtisanBeer
             if (workshop != null) return ArtisanWorkshop(workshop);
             return null;
         }
+        public Hero ConversationWorkshopOwner()
+        {
+            var workshop = FindCurrentWorkshop(ConversationMission.OneToOneConversationAgent);
+            if (workshop != null) return workshop.Owner;
+            return null;
+        }
         public int ConversationArtisanWorkshopStock()
         {
             var artisanWorkshop = ConversationArtisanWorkshop();
@@ -151,6 +157,26 @@ namespace ArtisanBeer
                 starter.AddDialogLine("tavernkeeper_talk_artisan_beer_b", "tavernkeeper_artisan_beer", "tavernkeeper_talk", "{=P9f9VwfJSNypO}We don't have a brewery in town. You'll have to look somewhere else.", null, null);
             }
             {
+                starter.AddDialogLine("artisan_brewer_owner_talk_outofstock", "start", "end", "{=Udj8g9UVDxOBw}Hello boss. We are currently out of stock.",
+                    () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer && ConversationWorkshopOwner() == Hero.MainHero
+                    && ConversationArtisanWorkshopStock() <= 0, null);
+
+                starter.AddDialogLine("artisan_brewer_owner_talk_instock", "start", "artisan_brewer_owner", "{=4e9PSdQtmJJE1}Hello boss, do you want to take some beer with you?",
+                    () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer && ConversationWorkshopOwner() == Hero.MainHero
+                    , null);
+                starter.AddPlayerLine("artisan_brewer_owner_buy", "artisan_brewer_owner", "artisan_brewer_owner_purchased", "{=iJg7vJ8VjI3gE}Sure, I'll take one.", null, () =>
+                {
+                    MobileParty.MainParty.ItemRoster.AddToCounts(_artisanBeer, 1);
+                    var artisanWorkshop = ConversationArtisanWorkshop();
+                    artisanWorkshop.AddToStock(-1);
+                    InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=8aiPERXa1Ez94}Received 1 Artisan Beer").ToString()));
+                });
+                starter.AddDialogLine("artisan_brewer_owner_thanks_for_business", "artisan_brewer_owner_purchased", "end", "{=IYtWJk9dN1Up5}Here you go", null, null);
+
+                starter.AddPlayerLine("artisan_brewer_owner_buy_refuse", "artisan_brewer_owner", "artisan_brewer_owner_declined", "{=ATxU9QDhKhNNl}Not right now", null, null);
+                starter.AddDialogLine("artisan_brewer_owner_your_loss", "artisan_brewer_owner_declined", "end", "{=tOFcFalV7Rgk7}Ok boss, I'll hold onto them for now", null, null);
+            }
+            {
                 starter.AddDialogLine("artisan_brewer_talk_outofstock", "start", "end", "{=vaYcSAMZjDnYX}Howdy. Are you here to buy artisan beer? Unfortunately we are out of stock. Come back later.",
                     () => CharacterObject.OneToOneConversationCharacter == _artisanBrewer && ConversationArtisanWorkshopStock() <= 0, null);
 
@@ -166,6 +192,7 @@ namespace ArtisanBeer
                     MobileParty.MainParty.ItemRoster.AddToCounts(_artisanBeer, 1);
                     var artisanWorkshop = ConversationArtisanWorkshop();
                     artisanWorkshop.AddToStock(-1);
+                    InformationManager.DisplayMessage(new InformationMessage(new TextObject("{=8aiPERXa1Ez94}Received 1 Artisan Beer").ToString()));
                 }, 100, (out TextObject explanation) =>
                 {
                     if (Hero.MainHero.Gold < 200)
@@ -238,7 +265,8 @@ namespace ArtisanBeer
 
         private void OnWorkshopChangedEvent(Workshop workshop, Hero oldOwningHero, WorkshopType type)
         {
-
+            string id = workshop.Settlement.StringId + "_" + workshop.Tag;
+            artisanWorkshops.Remove(id);
         }
 
         static public float WorkshopProductionEfficiency(Workshop workshop)

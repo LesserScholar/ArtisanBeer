@@ -21,5 +21,13 @@
 		<string id="niTH9sA3ar7r0" text="Thank you come again!" />
 		<string id="yCAp6VyaqYXlb" text="Nah I'm good, thanks." />
 		<string id="0aheY0j8IUl9O" text="Your loss." />
+		<string id="yCLS6x8c04f1C" text="We healed {HEAL_AMOUNT} HP" />
+		<string id="Udj8g9UVDxOBw" text="Hello boss. We are currently out of stock." />
+		<string id="4e9PSdQtmJJE1" text="Hello boss, do you want to take some beer with you?" />
+		<string id="IYtWJk9dN1Up5" text="Here you go" />
+		<string id="ATxU9QDhKhNNl" text="Not right now" />
+		<string id="tOFcFalV7Rgk7" text="Ok boss, I'll hold onto them for now" />
+		<string id="8aiPERXa1Ez94" text="Received 1 Artisan Beer" />
+
 	</strings>
 </base>
