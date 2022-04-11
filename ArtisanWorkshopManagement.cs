@@ -1,13 +1,19 @@
-﻿using SandBox.View;
-using System;
-using TaleWorlds.CampaignSystem.Settlements.Workshops;
+﻿using System;
 using TaleWorlds.Core;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade.View.Screen;
+
+#if BANNERLORD_172
+using SandBox.View;
+using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.ScreenSystem;
+#else
+using TaleWorlds.CampaignSystem;
+using TaleWorlds.Engine.Screens;
+#endif
 
 namespace ArtisanBeer
 {

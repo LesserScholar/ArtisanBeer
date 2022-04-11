@@ -1,26 +1,36 @@
 ﻿using SandBox;
-using SandBox.Conversation;
 using System;
 using System.Collections.Generic;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.CampaignSystem.AgentOrigins;
-using TaleWorlds.CampaignSystem.Encounters;
+
 using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.CampaignSystem.Overlay;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.CampaignSystem.Settlements;
-using TaleWorlds.CampaignSystem.Settlements.Locations;
-using TaleWorlds.CampaignSystem.Settlements.Workshops;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.ObjectSystem;
 using TaleWorlds.SaveSystem;
 
+#if BANNERLORD_172
+using SandBox.Conversation;
+using TaleWorlds.CampaignSystem.AgentOrigins;
+using TaleWorlds.CampaignSystem.Encounters;
+using TaleWorlds.CampaignSystem.Party;
+using TaleWorlds.CampaignSystem.Settlements;
+using TaleWorlds.CampaignSystem.Settlements.Locations;
+using TaleWorlds.CampaignSystem.Settlements.Workshops;
+#else
+using TaleWorlds.CampaignSystem.SandBox;
+#endif
+
 namespace ArtisanBeer
 {
     public class ArtisanBeerBehavior : CampaignBehaviorBase
     {
+        public ArtisanBeerBehavior()
+        {
+            instance = this;
+        }
         public override void RegisterEvents()
         {
             CampaignEvents.OnWorkshopChangedEvent.AddNonSerializedListener(this, OnWorkshopChangedEvent);
@@ -38,7 +48,6 @@ namespace ArtisanBeer
             _artisanBrewer = MBObjectManager.Instance.GetObject<CharacterObject>("artisan_brewer");
             AddDialogs(starter);
             AddGameMenus(starter);
-            instance = this;
         }
         Workshop _selectedWorkshop;
         private void AddGameMenus(CampaignGameStarter starter)

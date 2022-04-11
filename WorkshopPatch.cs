@@ -1,17 +1,17 @@
 ﻿using HarmonyLib;
-using Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using TaleWorlds.CampaignSystem;
+
+#if BANNERLORD_172
 using TaleWorlds.CampaignSystem.CampaignBehaviors;
 using TaleWorlds.CampaignSystem.CharacterDevelopment;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.CampaignSystem.Settlements.Workshops;
+#else
+using TaleWorlds.CampaignSystem.SandBox.CampaignBehaviors;
+#endif
 
 namespace ArtisanBeer
 {

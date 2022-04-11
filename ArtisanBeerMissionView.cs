@@ -1,6 +1,4 @@
-﻿using System;
-using TaleWorlds.CampaignSystem.Party;
-using TaleWorlds.Core;
+﻿using TaleWorlds.Core;
 using TaleWorlds.Engine;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.Data;
@@ -9,6 +7,13 @@ using TaleWorlds.Localization;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.MountAndBlade.View.Missions;
 using TaleWorlds.ObjectSystem;
+
+#if BANNERLORD_172
+using TaleWorlds.CampaignSystem.Party;
+#else
+using TaleWorlds.CampaignSystem;
+#endif
+
 
 namespace ArtisanBeer
 {
@@ -121,7 +126,7 @@ namespace ArtisanBeer
             var oldHealth = ma.Health;
             ma.Health += 15;
             if (ma.Health > ma.HealthLimit) ma.Health = ma.HealthLimit;
-            var msg = new TextObject("{=yCLS6x8c04f1C}We healed {HEAL_AMOUNT} HP").SetTextVariable("HEAL_AMOUNT", _mission.MainAgent.Health - oldHealth);
+            var msg = new TextObject("{=yCLS6x8c04f1C}Healed for {HEAL_AMOUNT} HP").SetTextVariable("HEAL_AMOUNT", _mission.MainAgent.Health - oldHealth);
             InformationManager.DisplayMessage(new InformationMessage(msg.ToString()));
 
             _mission.MakeSound(_soundIndex, Vec3.Zero, false, true, -1, -1);
