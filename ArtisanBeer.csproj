@@ -11,11 +11,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <DefineConstants>$(DefineConstants)TRACE;BANNERLORD_172</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <DefineConstants>$(DefineConstants)TRACE;BANNERLORD_172</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

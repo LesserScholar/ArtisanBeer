@@ -1,7 +1,7 @@
 ## Artisan Beer Bannerlord Mod Tutorial
 
 * Youtube Playlist: https://www.youtube.com/playlist?list=PLzebdAxJeltRwfJ8jzsNolgHkRvLjoCRC
-* Nexus Mods link: TBD
+* Nexus Mods link: https://www.nexusmods.com/mountandblade2bannerlord/mods/3913
 
 This repository contains the code for the YouTube Modding tutorial series. Most of the commits here correspond 1-to-1 with the code written in the corresponding episode.
 
